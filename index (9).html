@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Techfest 30.0 — Asia's Largest Science & Technology Festival. AI Planet, Robotics Sphere, Space Hub, Startup City, Quantum Core."/>
+  <title>TECHFEST 30.0 — Ignite The Future</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+
+  <!-- CURSOR -->
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+
+  <!-- SCROLL PROGRESS -->
+  <div id="progress-bar"></div>
+
+  <!-- THREE.JS CANVAS -->
+  <canvas id="universe"></canvas>
+
+  <!-- HUD OVERLAY -->
+  <div id="hud" aria-hidden="true">
+    <div class="hud-tl">
+      <span class="hud-label">TECHFEST 30.0</span>
+      <span class="hud-sub" id="hud-zone">ORBIT · ENTRY SEQUENCE</span>
+    </div>
+    <div class="hud-tr">
+      <span class="hud-label" id="hud-coords">0.0000 · 0.0000</span>
+      <span class="hud-sub">COORDINATES</span>
+    </div>
+    <div class="hud-br">
+      <div class="hud-scanline"></div>
+      <span class="hud-sub" id="hud-scroll-pct">0%</span>
+    </div>
+    <div class="hud-bl">
+      <div class="hud-heartbeat">
+        <svg viewBox="0 0 80 20" preserveAspectRatio="none"><polyline points="0,10 10,10 15,2 20,18 25,2 30,18 35,10 80,10" fill="none" stroke="#00f0ff" stroke-width="1.2"/></svg>
+      </div>
+      <span class="hud-sub">SYS NOMINAL</span>
+    </div>
+  </div>
+
+  <!-- ZONE NAV DOTS -->
+  <nav class="zone-nav" id="zone-nav" aria-label="Zones">
+    <button class="zone-dot active" data-zone="0" data-label="Hero" title="Entry"></button>
+    <button class="zone-dot" data-zone="1" data-label="AI Planet" title="AI Planet"></button>
+    <button class="zone-dot" data-zone="2" data-label="Robotics Sphere" title="Robotics Sphere"></button>
+    <button class="zone-dot" data-zone="3" data-label="Space Hub" title="Space Hub"></button>
+    <button class="zone-dot" data-zone="4" data-label="Startup City" title="Startup City"></button>
+    <button class="zone-dot" data-zone="5" data-label="Quantum Core" title="Quantum Core"></button>
+  </nav>
+
+  <!-- MOBILE NAV -->
+  <div class="mnav" id="mnav">
+    <button class="mnav-close" id="mnav-close">✕</button>
+    <ul>
+      <li><a href="#ai-planet"       onclick="closeMnav()">AI Planet</a></li>
+      <li><a href="#robotics-sphere" onclick="closeMnav()">Robotics Sphere</a></li>
+      <li><a href="#space-hub"       onclick="closeMnav()">Space Hub</a></li>
+      <li><a href="#startup-city"    onclick="closeMnav()">Startup City</a></li>
+      <li><a href="#quantum-core"    onclick="closeMnav()">Quantum Core</a></li>
+      <li><a href="#register"        onclick="closeMnav()" class="mnav-cta">Register Now</a></li>
+    </ul>
+  </div>
+
+  <!-- NAV -->
+  <nav class="topnav" id="topnav">
+    <a href="#" class="topnav__logo">
+      <span class="logo-pulse"></span>
+      TECH<em>FEST</em> <sup>30.0</sup>
+    </a>
+    <ul class="topnav__links">
+      <li><a href="#ai-planet">AI Planet</a></li>
+      <li><a href="#robotics-sphere">Robotics</a></li>
+      <li><a href="#space-hub">Space Hub</a></li>
+      <li><a href="#startup-city">Startup City</a></li>
+      <li><a href="#quantum-core">Quantum Core</a></li>
+    </ul>
+    <div class="topnav__right">
+      <a href="#register" class="topnav__btn">Register Free</a>
+      <button class="topnav__burger" id="burger">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════════
+       SECTION 0 · HERO
+  ══════════════════════════════════════ -->
+  <section class="zone zone--hero" id="home" data-zone-index="0">
+    <div class="zone__content hero-content">
+      <div class="hero-overtitle" data-ani>
+        <span class="pulse-dot"></span>
+        IIT BOMBAY &nbsp;·&nbsp; NOV 14–16, 2025 &nbsp;·&nbsp; EDITION 30
+        <span class="pulse-dot"></span>
+      </div>
+      <h1 class="hero-title" data-ani>
+        <span>IGNITE</span>
+        <span class="grad-text">THE</span>
+        <span>FUTURE</span>
+      </h1>
+      <p class="hero-sub" data-ani>
+        Asia's largest Science &amp; Technology festival enters its 30th year.<br/>
+        Five worlds. Infinite possibilities.
+      </p>
+      <div class="hero-ctas" data-ani>
+        <a href="#ai-planet" class="btn-primary">
+          Begin Journey <span class="btn-arrow">↓</span>
+        </a>
+        <a href="#register" class="btn-outline">Register Free</a>
+      </div>
+      <div class="hero-stats" data-ani>
+        <div class="hstat"><span class="hstat-n" data-count="150" data-sfx="+">0</span><span>Events</span></div>
+        <div class="hstat-sep"></div>
+        <div class="hstat"><span class="hstat-n" data-count="20" data-sfx="k+">0</span><span>Participants</span></div>
+        <div class="hstat-sep"></div>
+        <div class="hstat"><span class="hstat-n" data-pfx="₹" data-count="2" data-sfx="Cr+">0</span><span>Prize Pool</span></div>
+        <div class="hstat-sep"></div>
+        <div class="hstat"><span class="hstat-n" data-count="45" data-sfx="+">0</span><span>Countries</span></div>
+      </div>
+    </div>
+    <div class="scroll-cue" data-ani>
+      <span>SCROLL TO EXPLORE</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SECTION 1 · AI PLANET
+  ══════════════════════════════════════ -->
+  <section class="zone zone--ai" id="ai-planet" data-zone-index="1">
+    <div class="zone__content" data-side="left">
+      <div class="zone-badge" data-ani style="--c:#00f0ff">
+        <span class="zone-num">01</span>
+        <span class="zone-tag">AI PLANET</span>
+      </div>
+      <h2 class="zone-title" data-ani>
+        Intelligence<br/><em class="gc--ai">Unchained</em>
+      </h2>
+      <p class="zone-desc" data-ani>
+        The AI Planet is where algorithms come alive. Deep learning showdowns, NLP marathons, computer vision battles — and keynotes from the engineers rewriting what's possible.
+      </p>
+      <div class="zone-events" data-ani>
+        <div class="zevent">
+          <span class="zevent-icon" style="--c:#00f0ff">⬡</span>
+          <div>
+            <strong>DeepMind Challenge</strong>
+            <span>48-hr ML marathon · ₹3L prize</span>
+          </div>
+        </div>
+        <div class="zevent">
+          <span class="zevent-icon" style="--c:#00f0ff">◈</span>
+          <div>
+            <strong>NLP Wars</strong>
+            <span>Language model hackathon · ₹1.5L</span>
+          </div>
+        </div>
+        <div class="zevent">
+          <span class="zevent-icon" style="--c:#00f0ff">⌬</span>
+          <div>
+            <strong>Vision Quest</strong>
+            <span>Computer vision competition · ₹2L</span>
+          </div>
+        </div>
+      </div>
+      <a href="#register" class="btn-primary" data-ani style="--bc:#00f0ff">Explore AI Planet →</a>
+    </div>
+    <div class="zone-visual zone-visual--ai" data-ani>
+      <div class="planet-ring-container">
+        <div class="planet-core planet-core--ai"></div>
+        <div class="planet-ring pr-1"></div>
+        <div class="planet-ring pr-2"></div>
+        <div class="planet-ring pr-3"></div>
+        <div class="planet-node pn-1">ML</div>
+        <div class="planet-node pn-2">NLP</div>
+        <div class="planet-node pn-3">CV</div>
+        <div class="planet-node pn-4">RL</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SECTION 2 · ROBOTICS SPHERE
+  ══════════════════════════════════════ -->
+  <section class="zone zone--robot" id="robotics-sphere" data-zone-index="2">
+    <div class="zone__content" data-side="right">
+      <div class="zone-badge" data-ani style="--c:#ff4d6d">
+        <span class="zone-num">02</span>
+        <span class="zone-tag">ROBOTICS SPHERE</span>
+      </div>
+      <h2 class="zone-title" data-ani>
+        Metal &amp; Motion<br/><em class="gc--robot">Evolved</em>
+      </h2>
+      <p class="zone-desc" data-ani>
+        Inside the Robotics Sphere, machines fight, navigate, and think. Watch teams pour 48 sleepless hours into bots that push the edge of what silicon and steel can do.
+      </p>
+      <div class="zone-events" data-ani>
+        <div class="zevent">
+          <span class="zevent-icon" style="--c:#ff4d6d">⬡</span>
+          <div><strong>Robocon</strong><span>Asia's top robotics battle · ₹5L</span></div>
+        </div>
+        <div class="zevent">
+          <span class="zevent-icon" style="--c:#ff4d6d">◈</span>
+          <div><strong>Maze Runner</strong><span>Autonomous navigation · ₹1.8L</span></div>
+        </div>
+        <div class="zevent">
+          <span class="zevent-icon" style="--c:#ff4d6d">⌬</span>
+          <div><strong>BotWars</strong><span>Combat robotics arena · ₹2.5L</span></div>
+        </div>
+      </div>
+      <a href="#register" class="btn-primary" data-ani style="--bc:#ff4d6d">Explore Robotics →</a>
+    </div>
+    <div class="zone-visual zone-visual--robot" data-ani>
+      <div class="planet-ring-container">
+        <div class="planet-core planet-core--robot"></div>
+        <div class="planet-ring pr-1" style="--rc:255,77,109"></div>
+        <div class="planet-ring pr-2" style="--rc:255,77,109"></div>
+        <div class="planet-ring pr-3" style="--rc:255,77,109"></div>
+        <div class="planet-node pn-1" style="--nc:#ff4d6d">ARM</div>
+        <div class="planet-node pn-2" style="--nc:#ff4d6d">ACT</div>
+        <div class="planet-node pn-3" style="--nc:#ff4d6d">NAV</div>
+        <div class="planet-node pn-4" style="--nc:#ff4d6d">PWR</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SECTION 3 · SPACE HUB
+  ══════════════════════════════════════ -->
+  <section class="zone zone--space" id="space-hub" data-zone-index="3">
+    <div class="zone__content" data-side="left">
+      <div class="zone-badge" data-ani style="--c:#f59e0b">
+        <span class="zone-num">03</span>
+        <span class="zone-tag">SPACE HUB</span>
+      </div>
+      <h2 class="zone-title" data-ani>
+        Beyond the<br/><em class="gc--space">Atmosphere</em>
+      </h2>
+      <p class="zone-desc" data-ani>
+        The Space Hub bridges Earth's engineers with the cosmos. Aeromodelling, satellite design, orbital mechanics challenges — and keynotes from the people actually going there.
+      </p>
+      <div class="zone-events" data-ani>
+        <div class="zevent">
+          <span class="zevent-icon" style="--c:#f59e0b">△</span>
+          <div><strong>Aeromodelling</strong><span>Flight precision challenge · ₹4L</span></div>
+        </div>
+        <div class="zevent">
+          <span class="zevent-icon" style="--c:#f59e0b">◈</span>
+          <div><strong>Satellite Design</strong><span>CubeSat engineering · ₹2L</span></div>
+        </div>
+        <div class="zevent">
+          <span class="zevent-icon" style="--c:#f59e0b">⬡</span>
+          <div><strong>Rocketry</strong><span>Model rocket launch competition · ₹3L</span></div>
+        </div>
+      </div>
+      <a href="#register" class="btn-primary" data-ani style="--bc:#f59e0b">Explore Space Hub →</a>
+    </div>
+    <div class="zone-visual zone-visual--space" data-ani>
+      <div class="planet-ring-container">
+        <div class="planet-core planet-core--space"></div>
+        <div class="planet-ring pr-1" style="--rc:245,158,11"></div>
+        <div class="planet-ring pr-2" style="--rc:245,158,11"></div>
+        <div class="planet-ring pr-3" style="--rc:245,158,11"></div>
+        <div class="planet-node pn-1" style="--nc:#f59e0b">ORB</div>
+        <div class="planet-node pn-2" style="--nc:#f59e0b">SAT</div>
+        <div class="planet-node pn-3" style="--nc:#f59e0b">AOE</div>
+        <div class="planet-node pn-4" style="--nc:#f59e0b">RKT</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SECTION 4 · STARTUP CITY
+  ══════════════════════════════════════ -->
+  <section class="zone zone--startup" id="startup-city" data-zone-index="4">
+    <div class="zone__content" data-side="right">
+      <div class="zone-badge" data-ani style="--c:#34d399">
+        <span class="zone-num">04</span>
+        <span class="zone-tag">STARTUP CITY</span>
+      </div>
+      <h2 class="zone-title" data-ani>
+        Ideas Into<br/><em class="gc--startup">Empires</em>
+      </h2>
+      <p class="zone-desc" data-ani>
+        Startup City is the beating economic heart of Techfest. Pitch real investors. Meet co-founders. Launch your MVP. The next unicorn begins its story here.
+      </p>
+      <div class="zone-events" data-ani>
+        <div class="zevent">
+          <span class="zevent-icon" style="--c:#34d399">⌬</span>
+          <div><strong>Startup Sprint</strong><span>72-hr build challenge · ₹3.5L</span></div>
+        </div>
+        <div class="zevent">
+          <span class="zevent-icon" style="--c:#34d399">⬡</span>
+          <div><strong>VC Pitch Finals</strong><span>Real investors · Real funding</span></div>
+        </div>
+        <div class="zevent">
+          <span class="zevent-icon" style="--c:#34d399">◈</span>
+          <div><strong>Expo Showcase</strong><span>Startup stalls &amp; demos · Free entry</span></div>
+        </div>
+      </div>
+      <a href="#register" class="btn-primary" data-ani style="--bc:#34d399">Explore Startup City →</a>
+    </div>
+    <div class="zone-visual zone-visual--startup" data-ani>
+      <div class="planet-ring-container">
+        <div class="planet-core planet-core--startup"></div>
+        <div class="planet-ring pr-1" style="--rc:52,211,153"></div>
+        <div class="planet-ring pr-2" style="--rc:52,211,153"></div>
+        <div class="planet-ring pr-3" style="--rc:52,211,153"></div>
+        <div class="planet-node pn-1" style="--nc:#34d399">MVP</div>
+        <div class="planet-node pn-2" style="--nc:#34d399">VC$</div>
+        <div class="planet-node pn-3" style="--nc:#34d399">GTM</div>
+        <div class="planet-node pn-4" style="--nc:#34d399">IPO</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SECTION 5 · QUANTUM CORE
+  ══════════════════════════════════════ -->
+  <section class="zone zone--quantum" id="quantum-core" data-zone-index="5">
+    <div class="zone__content" data-side="left">
+      <div class="zone-badge" data-ani style="--c:#a78bfa">
+        <span class="zone-num">05</span>
+        <span class="zone-tag">QUANTUM CORE</span>
+      </div>
+      <h2 class="zone-title" data-ani>
+        Reality at Its<br/><em class="gc--quantum">Deepest Level</em>
+      </h2>
+      <p class="zone-desc" data-ani>
+        The Quantum Core goes where classical physics ends. Cryptography, qubit programming, quantum chemistry — guarded by keynotes from researchers who talk in superpositions.
+      </p>
+      <div class="zone-events" data-ani>
+        <div class="zevent">
+          <span class="zevent-icon" style="--c:#a78bfa">⊛</span>
+          <div><strong>QCrypt Challenge</strong><span>Quantum cryptography · ₹2L</span></div>
+        </div>
+        <div class="zevent">
+          <span class="zevent-icon" style="--c:#a78bfa">⬡</span>
+          <div><strong>Qubit Olympics</strong><span>Programming quantum computers · ₹2.5L</span></div>
+        </div>
+        <div class="zevent">
+          <span class="zevent-icon" style="--c:#a78bfa">◈</span>
+          <div><strong>Q-Sim Lab</strong><span>Quantum simulation workshop · Free</span></div>
+        </div>
+      </div>
+      <a href="#register" class="btn-primary" data-ani style="--bc:#a78bfa">Explore Quantum Core →</a>
+    </div>
+    <div class="zone-visual zone-visual--quantum" data-ani>
+      <div class="planet-ring-container">
+        <div class="planet-core planet-core--quantum"></div>
+        <div class="planet-ring pr-1" style="--rc:167,139,250"></div>
+        <div class="planet-ring pr-2" style="--rc:167,139,250"></div>
+        <div class="planet-ring pr-3" style="--rc:167,139,250"></div>
+        <div class="planet-node pn-1" style="--nc:#a78bfa">QBT</div>
+        <div class="planet-node pn-2" style="--nc:#a78bfa">ENT</div>
+        <div class="planet-node pn-3" style="--nc:#a78bfa">SUP</div>
+        <div class="planet-node pn-4" style="--nc:#a78bfa">EQC</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       REGISTER
+  ══════════════════════════════════════ -->
+  <section class="zone zone--register" id="register" data-zone-index="6">
+    <div class="register-orbs" aria-hidden="true">
+      <div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
+    </div>
+    <div class="zone__content register-content">
+      <p class="label" data-ani>// JOIN THE MISSION</p>
+      <h2 class="register-title" data-ani>
+        Ready to Enter<br/><em>All Five Worlds?</em>
+      </h2>
+      <p class="zone-desc" data-ani style="margin:0 auto 2.5rem;text-align:center;max-width:460px;">
+        Free entry. All zones, all events, all speakers. Accommodation for outstation participants.
+      </p>
+      <form class="reg-form" id="reg-form" data-ani>
+        <div class="reg-form__row">
+          <input type="text"  name="name"  placeholder="Your Name"    required/>
+          <input type="email" name="email" placeholder="Email Address" required/>
+        </div>
+        <select name="zone">
+          <option value="">Primary Zone of Interest</option>
+          <option>AI Planet</option>
+          <option>Robotics Sphere</option>
+          <option>Space Hub</option>
+          <option>Startup City</option>
+          <option>Quantum Core</option>
+          <option>All Zones</option>
+        </select>
+        <button type="submit" class="btn-primary btn-full">
+          Secure My Spot <span class="btn-arrow">→</span>
+        </button>
+      </form>
+      <div class="reg-success" id="reg-success">
+        <div class="reg-success__icon">✓</div>
+        <h3>You're In The Universe!</h3>
+        <p>Check your email for confirmation &amp; zone entry codes.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <div class="footer__logo">
+          <span class="logo-pulse"></span>
+          TECH<em>FEST</em> <sup>30.0</sup>
+        </div>
+        <p>Asia's largest Science &amp; Technology Festival, 30th edition. IIT Bombay, November 2025.</p>
+        <div class="footer__social">
+          <a href="#">IG</a><a href="#">X</a><a href="#">LI</a><a href="#">YT</a>
+        </div>
+      </div>
+      <div class="footer__links">
+        <h4>Zones</h4>
+        <ul>
+          <li><a href="#ai-planet">AI Planet</a></li>
+          <li><a href="#robotics-sphere">Robotics Sphere</a></li>
+          <li><a href="#space-hub">Space Hub</a></li>
+          <li><a href="#startup-city">Startup City</a></li>
+          <li><a href="#quantum-core">Quantum Core</a></li>
+        </ul>
+      </div>
+      <div class="footer__links">
+        <h4>Info</h4>
+        <ul>
+          <li><a href="#">About Techfest</a></li>
+          <li><a href="#">Speakers</a></li>
+          <li><a href="#">Schedule</a></li>
+          <li><a href="#">Media Kit</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer__links">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms &amp; Conditions</a></li>
+          <li><a href="#">Code of Conduct</a></li>
+          <li><a href="#">Refund Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2025 Techfest IIT Bombay · All rights reserved · Edition 30</span>
+      <span class="footer__status"><span class="footer__dot"></span>Registrations Open</span>
+    </div>
+  </footer>
+
+  <!-- Three.js CDN — works on GitHub Pages -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="js/three-scene.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
